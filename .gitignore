@@ -1,0 +1,6 @@
+# Local Vagrant state and generated SSH keys
+.vagrant/
+
+# Build output
+bin/
+*.o
