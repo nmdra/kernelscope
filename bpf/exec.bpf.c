@@ -1,3 +1,5 @@
+//go:build ignore
+
 // Kernel data types generated from BTF.
 #include "vmlinux.h"
 

@@ -9,7 +9,8 @@ BPF_PROGRAM := trace_exec
 
 .PHONY: help check generate build run \
         trace inspect programs features \
-        fmt vet test clean all
+        fmt vet test clean all \
+        run-exec run-files inspect-files
 
 # Display available commands
 help:
@@ -49,8 +50,7 @@ build:
 	go build -o $(BIN) ./cmd/kernelscope
 
 # Run KernelScope (requires root privileges)
-run: build
-	sudo ./$(BIN)
+run: run-exec
 
 # Read eBPF debug messages from trace_pipe
 # Run in a second terminal
@@ -84,6 +84,18 @@ test:
 # Remove build artifacts (keep generated bindings)
 clean:
 	rm -rf $(BIN_DIR)
+
+# Phase 1: Process execution tracer
+run-exec: build
+	sudo ./$(BIN) watch exec
+
+# Phase 2: File activity tracer
+run-files: build
+	sudo ./$(BIN) watch files
+
+# Inspect the Phase 2 eBPF object
+inspect-files:
+	llvm-objdump -d cmd/kernelscope/file_bpfel.o
 
 # Generate eBPF and build KernelScope
 all: generate build
