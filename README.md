@@ -1,12 +1,13 @@
 # KernelScope
 
+> [!NOTE]
+> KernelScope is an experimental, ongoing eBPF learning project.
+
 KernelScope is a Linux-first observability learning project built with Go and
 eBPF. Its goal is to make process execution, file activity, network connections,
 and performance events visible from the command line.
 
-The learning approach is simple: **learn the kernel concept, build the smallest
-working experiment, then integrate it into KernelScope.**
-*Learning eBPF* by Liz Rice is the theory reference.
+_Learning eBPF_ by Liz Rice is the theory reference.
 
 ## Current status
 
